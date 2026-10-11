@@ -1,0 +1,19 @@
+{
+  "name": "campus-loot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A just-for-fun campus treasure hunt site with ticket-locked clue videos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "multer": "^2.0.2"
+  }
+}

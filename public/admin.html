@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Campus Loot Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><i>L</i> Campus Loot Admin</a>
+    <div class="row">
+      <a class="btn ghost small" href="/">View site</a>
+      <button class="btn ghost small" id="logout" hidden>Log out</button>
+    </div>
+  </header>
+
+  <div class="panel login" id="login" hidden>
+    <h2>Organiser login</h2>
+    <form id="loginForm">
+      <label for="pw">Password</label>
+      <input class="in" type="password" id="pw" autocomplete="current-password">
+      <p class="msg" id="loginMsg" aria-live="polite"></p>
+      <button class="btn gold block" type="submit">Log in</button>
+    </form>
+  </div>
+
+  <div id="app" hidden>
+    <section class="panel" id="reqPanel">
+      <div class="row" style="justify-content:space-between"><h3>Payment requests <span class="pill soon" id="reqCount" hidden></span></h3><button class="btn ghost small" id="reqRefresh">Refresh</button></div>
+      <p class="small-note">Open your UPI app, find the payment, and check that the amount and transaction ID match. Then approve. The student's video unlocks on their screen straight away.</p>
+      <div class="tlist" id="reqList"></div>
+      <p class="msg" id="reqMsg" aria-live="polite"></p>
+    </section>
+
+    <section class="panel" id="payPanel" style="margin-top:16px">
+      <h3>Payment QR</h3>
+      <div class="row" style="align-items:flex-start;gap:18px">
+        <div class="qrbox" id="qrPreview" style="margin:0"></div>
+        <div class="stack" style="flex:1;min-width:220px">
+          <div><label for="payName">Name students see when paying</label>
+            <input class="in" id="payName" maxlength="40" placeholder="Campus Loot">
+            <p class="hint">This is only the name shown on the site. Your QR itself decides what the UPI app shows.</p></div>
+          <div class="row">
+            <button class="btn gold small" id="saveName">Save name</button>
+            <label class="btn ghost small" style="margin:0;cursor:pointer">Upload QR image<input type="file" id="qrFile" accept="image/png,image/jpeg,image/webp" hidden></label>
+            <button class="btn ghost small" id="rmQr" hidden>Remove QR</button>
+          </div>
+          <p class="msg" id="payMsg" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="row" style="justify-content:space-between;margin:28px 0 16px">
+      <h2 style="font-size:1.8rem">Events</h2>
+      <button class="btn gold" id="newBtn">New event</button>
+    </div>
+
+    <form class="panel" id="evForm" hidden>
+      <h3 id="formTitle">New event</h3>
+      <div class="form">
+        <div class="full"><label for="f-title">Title</label><input class="in" id="f-title" maxlength="80" required></div>
+        <div><label for="f-kind">Type</label>
+          <select class="in" id="f-kind"><option value="cash">Cash Treasure</option><option value="voucher">Voucher Treasure</option><option value="mystery">Mystery Box</option></select></div>
+        <div><label for="f-prize">Prize (shown on the card)</label><input class="in" id="f-prize" maxlength="80" placeholder="₹5,000 cash"></div>
+        <div><label for="f-prizeValue">Prize value in ₹ (adds to the total)</label><input class="in" id="f-prizeValue" type="number" min="0" step="1" value="0"></div>
+        <div><label for="f-price">Ticket price in ₹</label><input class="in" id="f-price" type="number" min="0" step="1" value="50"></div>
+        <div><label for="f-start">Starts</label><input class="in" id="f-start" type="datetime-local" required></div>
+        <div><label for="f-end">Ends</label><input class="in" id="f-end" type="datetime-local" required></div>
+        <div><label for="f-spots">Number of tickets</label><input class="in" id="f-spots" type="number" min="1" step="1" value="100"></div>
+        <div><label for="f-where">Area (shown publicly)</label><input class="in" id="f-where" maxlength="80" placeholder="Library and nearby lawns"><p class="hint">Keep it vague. The exact spot belongs in the video.</p></div>
+        <div class="full"><label for="f-blurb">Description</label><textarea class="in" id="f-blurb" maxlength="300"></textarea></div>
+        <div class="full"><label for="f-winner">Winner note (after the hunt)</label><input class="in" id="f-winner" maxlength="120" placeholder="Found by Aarav, 2nd year, in 41 minutes."></div>
+      </div>
+      <p class="msg" id="formMsg" aria-live="polite"></p>
+      <div class="row end"><button type="button" class="btn ghost" id="cancelBtn">Cancel</button><button type="submit" class="btn gold">Save event</button></div>
+    </form>
+
+    <div class="stack" id="list" style="margin-top:16px"></div>
+  </div>
+</div>
+<script src="/admin.js" defer></script>
+</body>
+</html>

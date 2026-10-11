@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campus Loot</title>
+<meta name="description" content="Campus treasure hunts with cash and voucher prizes. Get a ticket, watch the clue video, find the treasure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/"><i>L</i> Campus Loot</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#events">Events</a>
+      <a href="#how">How it works</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow"><span class="dot"></span><span id="liveCount">Loading hunts</span></p>
+      <h1>Hidden on campus. <em>Yours</em> if you find it.</h1>
+      <p class="lead">Cash and vouchers are hidden around the university. Buy a ticket, watch the clue video, and be the first to get there.</p>
+      <div class="cta">
+        <a class="btn gold" href="#events">See live hunts</a>
+        <a class="btn ghost" href="#how">How it works</a>
+      </div>
+      <div class="pool"><b id="poolTotal">₹0</b><span>in prizes across live and upcoming hunts</span></div>
+    </div>
+    <div class="map" aria-hidden="true">
+      <svg viewBox="0 0 400 300">
+        <rect x="6" y="6" width="388" height="288" rx="14" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <g fill="var(--surface-2)" stroke="var(--line)" stroke-width="2">
+          <rect x="30" y="34" width="86" height="58" rx="8"/>
+          <rect x="150" y="34" width="60" height="96" rx="8"/>
+          <rect x="250" y="34" width="116" height="48" rx="8"/>
+          <rect x="30" y="140" width="96" height="60" rx="8"/>
+          <rect x="250" y="120" width="60" height="90" rx="8"/>
+          <rect x="150" y="170" width="70" height="90" rx="8"/>
+          <rect x="30" y="228" width="90" height="46" rx="8"/>
+        </g>
+        <path d="M60 120 C 110 110, 130 150, 170 150 S 235 105, 280 100 S 330 160, 336 214" fill="none" stroke="var(--gold)" stroke-width="3" stroke-dasharray="3 9" stroke-linecap="round"/>
+        <circle cx="60" cy="120" r="6" fill="var(--fg)"/>
+        <g stroke="var(--live)" stroke-width="7" stroke-linecap="round"><path d="M322 200 L350 228"/><path d="M350 200 L322 228"/></g>
+        <text x="306" y="252" fill="var(--muted)" font-family="JetBrains Mono, monospace" font-size="12">TREASURE</text>
+      </svg>
+      <div class="legend"><span>Start: main gate</span><span>X: only ticket holders know</span></div>
+    </div>
+  </div>
+
+  <section aria-labelledby="lanesH">
+    <div class="sec-h"><h2 id="lanesH">Pick your loot</h2><p>Every hunt hides one of these. Prizes are handed over in person by the organisers.</p></div>
+    <div class="lanes" id="lanes"></div>
+  </section>
+
+  <section id="events" aria-labelledby="evH">
+    <div class="sec-h"><h2 id="evH">Events</h2><p>Live hunts are running now. Upcoming ones open ticket sales before they start.</p></div>
+    <div class="tabs" role="tablist" aria-label="Event status">
+      <button role="tab" aria-selected="true" data-tab="ongoing">Ongoing<span class="c" id="c-ongoing"></span></button>
+      <button role="tab" aria-selected="false" data-tab="upcoming">Upcoming<span class="c" id="c-upcoming"></span></button>
+      <button role="tab" aria-selected="false" data-tab="past">Past<span class="c" id="c-past"></span></button>
+    </div>
+    <div class="grid" id="grid" role="tabpanel"></div>
+  </section>
+
+  <section id="how" aria-labelledby="howH">
+    <div class="sec-h"><h2 id="howH">How it works</h2></div>
+    <div class="steps">
+      <div class="step"><h3>Get a ticket</h3><p>Pay the entry fee to the organiser by UPI and you receive a ticket code.</p></div>
+      <div class="step"><h3>Watch the clue video</h3><p>Enter the code on the event card. The video that shows the hiding spot unlocks for you.</p></div>
+      <div class="step"><h3>Find it and claim it</h3><p>First to the spot takes the prize. Show your ticket code to the organiser to collect.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span id="contact"></span>
+    <span>A just-for-fun campus game. Not run by or affiliated with the university.</span>
+  </footer>
+</div>
+
+<div class="ov" id="ov" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" id="modal"></div>
+</div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>
